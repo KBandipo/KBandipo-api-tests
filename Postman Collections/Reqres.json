@@ -971,7 +971,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "513d927f-da95-4d1b-a714-95ec167fcf92",
+				"id": "eb08f775-2007-4f07-b3aa-390af804e93a",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -982,7 +982,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a9a74315-603c-4f1d-a2be-ce8c0f6d7388",
+				"id": "6fb64c65-7e45-431e-b91e-f4422b1b2540",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
