@@ -124,7 +124,7 @@
 								}
 							}
 						},
-						"url": "{{base_url}}/registe"
+						"url": "{{base_url}}/register"
 					},
 					"response": []
 				},
