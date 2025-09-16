@@ -69,6 +69,66 @@
 					"response": []
 				},
 				{
+					"name": "Register User Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "27be2660-04fb-428f-aa6d-46dd1623b472",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"registered_Id\", jsonData.id);\r",
+									"pm.collectionVariables.set(\"registered_Token\", jsonData.token);\r",
+									"pm.test(\"Status code is 200\", ()=> {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"Status message is OK\", ()=> {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the response properties and their datatypes\", () => {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData).to.have.property(\"token\");\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.token).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3d18412d-f948-4746-878c-d3017866e7e0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/register"
+					},
+					"response": []
+				},
+				{
 					"name": "List Users",
 					"event": [
 						{
@@ -970,7 +1030,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "88d8ba7b-36e1-40c8-842d-345a73527ed9",
+				"id": "03572544-d72b-40be-ae23-c680fd018552",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -981,7 +1041,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b14be791-fd5e-4fd2-a3f8-e2520afb5fc5",
+				"id": "c9380b55-6b54-4986-bb73-96ae83e4db5a",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -1025,6 +1085,10 @@
 		},
 		{
 			"key": "registered_Token",
+			"value": ""
+		},
+		{
+			"key": "test_id",
 			"value": ""
 		}
 	]
