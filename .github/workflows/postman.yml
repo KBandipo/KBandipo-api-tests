@@ -3,7 +3,7 @@ name: Run Postman API Tests
 on:
   push:
     branches:
-      - Dev
+      - dev
   pull_request:
     branches:
       - main
@@ -20,7 +20,8 @@ jobs:
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-      - name: Run Postman Collection via CLI
-        run: |
-          postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-          postman collection run 3a667fee-7dd2-4b1b-8240-84cc9352d39c --integration-id ${{ github.run_id }}
+      - name: Authenticate Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+      - name: Run Postman Collection
+        run: postman collection run 3a667fee-7dd2-4b1b-8240-84cc9352d39c --integration-id ${{ github.run_id }}
