@@ -2,9 +2,9 @@ name: Run Postman API Tests
 
 on:
   push:
-    branches: [dev]
+    branches: [ "dev" ]
   pull_request:
-    branches: [main]
+    branches: [ "main" ]
 
 jobs:
   test:
@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Postman CLI
         run: |
@@ -20,8 +20,5 @@ jobs:
 
       - name: Run Postman collection
         run: |
-          postman collection run 31805593-3a667fee-7dd2-4b1b-8240-84cc9352d39c \
-            --integration-id ${{ github.run_id }}
-        env:
-          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-
+          postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+          postman collection run 31805593-3a667fee-7dd2-4b1b-8240-84cc9352d39c --integration-id ${{ github.run_id }}
